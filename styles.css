@@ -1,0 +1,209 @@
+/* General Styles */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 3em;
+    color: #00ffff;
+    text-shadow: 2px 2px #007bff;
+}
+
+#winner-display {
+    font-size: 2em;
+    color: #00ffff;
+    margin-top: 20px;
+    text-shadow: 2px 2px #007bff;
+}
+
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 20px;
+}
+
+#score-x, #score-o {
+    font-size: 1.5em;
+    color: #00ffff;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Active player glow */
+#score-x.active {
+    color: #ff66ff;
+    text-shadow: 0px 0px 10px #ff66ff, 0px 0px 20px #ff66ff;
+}
+
+#score-o.active {
+    color: #66ff66;
+    text-shadow: 0px 0px 10px #66ff66, 0px 0px 20px #66ff66;
+}
+
+/* Main Board Layout */
+#main-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+}
+
+/* Small Boards */
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    background-color: #33334d;
+    padding: 5px;
+    border: 3px solid #4d4d7a;
+    aspect-ratio: 1 / 1;
+    transition: border 0.3s ease, background-color 1.5s ease;
+}
+
+/* Highlight valid board */
+.board.highlight {
+    border: 3px solid #00ffff;
+}
+
+/* Highlight winning board - X wins */
+.board.won-x {
+    border: 3px solid #ff66ff;
+}
+
+/* Highlight winning board - O wins */
+.board.won-o {
+    border: 3px solid #66ff66;
+}
+
+/* Indicate a draw */
+.board.draw {
+    border: 3px solid #ffcc00;
+}
+
+/* Indicate an invalid move */
+.board.invalid {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+/* Square Styles */
+.square {
+    background-color: #1a1a2e;
+    border: 2px solid #4d4d7a;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    color: #00ffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.square[data-player="X"] {
+    color: #ff66ff;
+}
+
+.square[data-player="O"] {
+    color: #66ff66;
+}
+
+/* Confetti Effect */
+.board.confetti {
+    animation: confetti 0.5s infinite alternate;
+}
+
+@keyframes confetti {
+    0% { background-color: #ff66ff; }
+    25% { background-color: #66ff66; }
+    50% { background-color: #00ffff; }
+    75% { background-color: #ffcc00; }
+    100% { background-color: #ff66ff; }
+}
+
+/* Buttons and Other Elements */
+#reset-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #ff66ff;
+    color: #1a1a2e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#reset-btn:hover {
+    background-color: #ff99cc;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    #score-x, #score-o {
+        font-size: 1.2em;
+    }
+
+    #main-board {
+        width: 100%;
+        max-width: none;
+        gap: 5px;
+    }
+
+    .board {
+        gap: 3px;
+        padding: 3px;
+    }
+
+    .square {
+        font-size: 1.5em;
+    }
+
+    #reset-btn {
+        margin-top: 15px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    #winner-display {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    #score-x, #score-o {
+        font-size: 1em;
+    }
+
+    .square {
+        font-size: 1.2em;
+    }
+
+    #reset-btn {
+        margin-top: 10px;
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    #winner-display {
+        font-size: 1.2em;
+    }
+}
